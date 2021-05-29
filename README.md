@@ -5,7 +5,7 @@
 
 # Why .sheep
 
-**nmap is widely tool but unfortunately is takes arround 24-25 seconds to perform a ping_sweep of a /24 subnet whereas .sheep can ping_sweep the same network in approximately 2 seconds and also save the alive hosts in a text file in order which you can directly give to nmap for port scanning**
+**nmap is widely tool but unfortunately is takes arround 24-25 seconds to perform a ping_sweep of a /24 subnet whereas .sheep can ping_sweep the same network in approximately 2 seconds and it also saves the alive hosts in a text file in "order" which you can feed to nmap for port scanning**
 
 # Compared
 
