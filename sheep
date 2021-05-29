@@ -1,0 +1,55 @@
+#!/bin/bash
+
+BGreen='\033[1;32m'
+BRed='\033[1;31m'
+NC='\033[0m'
+BBlue='\033[1;34m'
+
+if [ $# -lt 1 ]
+then
+	echo -e "\n${BRed}Insufficent Arguments${NC}...."
+	echo -e "		./ping_sweep <subnet>/24"
+	exit
+fi
+
+network=$(echo ${1} | cut -d "/" -f1)
+
+byte1=$(echo ${network} | cut -d "." -f1)
+byte2=$(echo ${network} | cut -d "." -f2)
+byte3=$(echo ${network} | cut -d "." -f3)
+
+test_net=${byte1}.${byte2}.${byte3}.X
+
+time=$(date +%T)
+
+function ping_test {
+	ping -c 1 ${1} -w 2 > /dev/null
+	
+	if [ $? -eq 0 ]
+	then
+		echo -e "${BGreen} ${1} ${NC}"
+		echo ${1} >> ${time}_ping_sweep
+	fi
+
+}
+function sweep {
+	echo -e "\n[${BGreen}+${NC}] Sweeping alive Hosts now..."
+	count=0
+	threads=0
+	while [ ${count} -le 254 ]
+	do
+		#echo ${1}.${count}
+		ping_test ${1}.${count} &
+		((count++))
+		((threads++))
+	done
+	echo -e "\n${BRed}${threads}${NC} threads have been spawned"
+	wait
+	cat ${time}_ping_sweep | sort -u > pg_${time}
+	rm ${time}_ping_sweep
+	echo -e "[${BGreen}+${NC}] Results have been written to ${BGreen} pg_${time} ${NC}"
+	echo -e "${BRed}$(cat pg_${time} | wc -l)${NC} hosts are up"
+}
+
+time=$(date +%T)
+sweep ${byte1}.${byte2}.${byte3}
