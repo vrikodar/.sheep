@@ -9,7 +9,7 @@
 
 # Compared
 
-@Nmap
+@Nmap {takes arround 24 seconds}
 
 ![Capture](https://github.com/SxNade/.sheep/blob/main/2021-05-29_03-15.png)
 
