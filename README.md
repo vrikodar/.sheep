@@ -9,9 +9,11 @@
 
 # Compared
 
-@Nmap {takes arround 24 seconds}
+@Nmap {takes arround 24 seconds} {even parallelism options won't help}
 
 ![Capture](https://github.com/SxNade/.sheep/blob/main/2021-05-29_03-15.png)
+
+@.sheep
 
 # Installing and Running
 
