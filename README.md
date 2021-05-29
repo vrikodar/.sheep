@@ -15,6 +15,8 @@
 
 @.sheep
 
+![Capture](https://github.com/SxNade/.sheep/blob/main/sheep.gif)
+
 # Installing and Running
 
 
