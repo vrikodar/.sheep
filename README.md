@@ -26,6 +26,9 @@
             
             $ ./sheep subnet/24
 
+# On the GO one Liner
+
+`curl https://raw.githubusercontent.com/SxNade/.sheep/main/sheep -o sheep; chmod +x sheep; ./sheep`
 
 # More Info
 
