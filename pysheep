@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+#Author: z3r0day
+
+from termcolor import colored
+import sys
+import subprocess
+
+if len(sys.argv) < 2:
+    print(colored("\n[!] Insufficent Arguments...", 'red', attrs=['bold']))
+    print("python3 sweep.py <subnet>/24")
+    sys.exit()
+
+
+subnet = sys.argv[1]
+
+def ping_check(test_net):
+    count = 0
+    while count <= 254:
+        host = test_net + str(count)
+        c = subprocess.run(f'ping -c 1 -w 2 {host} > /dev/null', shell=True)
+        if c.returncode == 0:
+            print(colored(f"{host}", 'green', attrs=['bold']))
+        count += 1
+        
+
+
+def sweep(subnet_in_CIDR_Notation):
+    print(colored("\n[+] Sweeping Alive Hosts now", 'green'))
+    subnet, _ = subnet_in_CIDR_Notation.split("/")
+    byte1, byte2, byte3, _ = subnet.split(".")
+    test_net = byte1 + "." + byte2 + "." + byte3 + "."
+    ping_check(test_net)
+
+
+sweep(subnet)
