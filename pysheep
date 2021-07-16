@@ -8,7 +8,7 @@ import subprocess
 
 if len(sys.argv) < 2:
     print(colored("\n[!] Insufficent Arguments...", 'red', attrs=['bold']))
-    print("python3 sweep.py <subnet>/24")
+    print("./pysheep <subnet>/24")
     sys.exit()
 
 
